@@ -3,12 +3,38 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+    {{> understandingSession}}
+    <h1>{{get "counter"}}</h1>
 
-  {{> hello}}
+    <h1>Flack</h1>
+    {{> loginButtons}}
+
+    {{> CommentList}}
+    {{> CommentAdd}}
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="CommentList">
+  {{# each comments}}
+    <ul>
+      <div>
+        {{comment}}
+        <br>
+        {{formatTimestamp timestamp}}
+      </div>
+    </ul>
+  {{else}}
+    <li>Sorry, no comments yet</li>
+  {{/ each}}
+</template>
+
+<template name="understandingSession">
+  <h1>Understanding Session</h1>
+</template>
+
+<template name="CommentAdd">
+  <form>
+    <input type="text" name="comment" autofocus placeholder="Add a comment..."/>
+    <input type="submit" value="Add"/>
+  </form>
 </template>
